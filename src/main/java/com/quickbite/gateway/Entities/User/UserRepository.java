@@ -1,15 +1,16 @@
 package com.quickbite.gateway.Entities.User;
 
-import com.quickbite.gateway.Entities.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import lombok.NonNull;
+import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    @Override
+    @NonNull
+    List<User> findAll();
 
     Optional<User> findByEmail(String email);
-
-    User findByRole(Role role);
 }
